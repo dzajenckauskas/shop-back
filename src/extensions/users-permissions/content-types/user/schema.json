@@ -88,6 +88,9 @@
     },
     "address2": {
       "type": "string"
+    },
+    "phone": {
+      "type": "string"
     }
   }
 }
