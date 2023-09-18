@@ -2,6 +2,8 @@
  * product service
  */
 
-import { factories } from '@strapi/strapi';
 
-export default factories.createCoreService('api::product.product');
+
+const { createCoreService } = require("@strapi/strapi").factories;
+
+module.exports = createCoreService("api::product.product");

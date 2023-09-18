@@ -67,6 +67,14 @@
           "localized": true
         }
       }
+    },
+    "shopifyID": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
