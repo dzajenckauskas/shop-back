@@ -23,6 +23,11 @@ export default factories.createCoreController('api::product.product', ({ strapi 
 
         entity.shopify = await shopify.product.get(entity.shopifyID)
 
+        console.log(await shopify.order
+            .get(5727615123802)
+            .then((orders) => console.log(orders, 'err'))
+            .catch((err) => console.error(err, 'err')), "orders");
+
         const sanitizedResults = await this.sanitizeOutput(entity, ctx);
 
         return this.transformResponse(sanitizedResults, { model: strapi.getModel('api::product:product') });
