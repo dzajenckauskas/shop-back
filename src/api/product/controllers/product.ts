@@ -19,14 +19,10 @@ export default factories.createCoreController('api::product.product', ({ strapi 
 
         const entity = await strapi.db.query('api::product.product').findOne({
             where: { slug: id },
+            populate: ['images']
         });
 
         entity.shopify = await shopify.product.get(entity.shopifyID)
-
-        console.log(await shopify.order
-            .get(5727615123802)
-            .then((orders) => console.log(orders, 'err'))
-            .catch((err) => console.error(err, 'err')), "orders");
 
         const sanitizedResults = await this.sanitizeOutput(entity, ctx);
 
