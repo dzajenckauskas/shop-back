@@ -14,19 +14,19 @@ export default factories.createCoreController('api::product.product', ({ strapi 
 
         return this.transformResponse(sanitizedResults, { pagination });
     },
-    async findOne(ctx) {
-        const { id } = ctx.params;
+    // async findOne(ctx) {
+    //     const { id } = ctx.params;
 
-        const entity = await strapi.db.query('api::product.product').findOne({
-            where: { slug: id },
-            populate: ['images']
-        });
+    //     const entity = await strapi.db.query('api::product.product').findOne({
+    //         where: { slug: id },
+    //         populate: ['images']
+    //     });
 
-        entity.shopify = await shopify.product.get(entity.shopifyID)
+    //     entity.shopify = await shopify.product.get(entity.shopifyID)
 
-        const sanitizedResults = await this.sanitizeOutput(entity, ctx);
+    //     const sanitizedResults = await this.sanitizeOutput(entity, ctx);
 
-        return this.transformResponse(sanitizedResults, { model: strapi.getModel('api::product:product') });
-    }
+    //     return this.transformResponse(sanitizedResults, { model: strapi.getModel('api::product:product') });
+    // }
 }));
 
