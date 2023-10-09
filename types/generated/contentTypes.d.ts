@@ -402,7 +402,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     orderTotal: Attribute.Float;
@@ -410,7 +410,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     items: Attribute.Component<'items.items', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::order.order',
       'oneToOne',
