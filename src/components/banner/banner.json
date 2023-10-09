@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_banner_banners",
+  "info": {
+    "displayName": "Banner"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

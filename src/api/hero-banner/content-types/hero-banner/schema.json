@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "hero_banners",
+  "info": {
+    "singularName": "hero-banner",
+    "pluralName": "hero-banners",
+    "displayName": "HeroBanner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "banner": {
+      "type": "component",
+      "repeatable": true,
+      "component": "banner.banner"
+    }
+  }
+}

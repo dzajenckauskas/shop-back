@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_items_items",
+  "info": {
+    "displayName": "items"
+  },
+  "options": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer"
+    },
+    "lineTotal": {
+      "type": "float"
+    },
+    "price": {
+      "type": "float"
+    },
+    "originalPrice": {
+      "type": "float"
+    },
+    "product": {
+      "type": "component",
+      "repeatable": false,
+      "component": "product.product"
+    }
+  }
+}

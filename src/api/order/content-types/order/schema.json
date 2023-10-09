@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,17 @@
   "attributes": {
     "orderTotal": {
       "type": "float"
+    },
+    "customer": {
+      "displayName": "customer",
+      "type": "component",
+      "repeatable": false,
+      "component": "customer.customer"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.items"
     }
   }
 }
