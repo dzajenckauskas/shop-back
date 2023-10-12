@@ -6,7 +6,7 @@ import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::order.order', ()=> ({
     async create(ctx){
-        const entity = await strapi.db.query('api::order.order').findMany({
+        const entity = await strapi.db.query('api::order.order').create({
             populate: ['customer','items']
         });
         console.log(entity, "created");
