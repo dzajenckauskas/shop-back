@@ -4,12 +4,10 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::order.order', ()=> ({
+export default factories.createCoreController('api::order.order', ({strapi})=> ({
     async create(ctx){
-        const entity = await strapi.db.query('api::order.order').create({
-            populate: ['customer','items']
-        });
-        console.log(entity, "created");
+        // const entity = await strapi.db.query('api::order.order').create({});
+        // console.log(entity, "created");
         await strapi.plugins['email'].services.email.send({
             to: '1000kaktusu@gmail.com',
             from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
@@ -20,7 +18,16 @@ export default factories.createCoreController('api::order.order', ()=> ({
             text: 'order created',
             html: 'order created',
           })
-        return this.transformResponse(entity,ctx);
+        // return this.transformResponse(entity,ctx);
+            // Creates the new order using a service
+    const newOrder = await strapi.service('api::order.order').create(ctx);
+
+    const sanitizedOrder = await this.sanitizeOutput(newOrder, ctx);
+        console.log(ctx, "ctx");
+        console.log(newOrder, "newOrder");
+        console.log(sanitizedOrder, "sanitizedOrder");
+
+    ctx.body = sanitizedOrder;
     },
     async post(ctx){
         console.log(ctx, "posted");
