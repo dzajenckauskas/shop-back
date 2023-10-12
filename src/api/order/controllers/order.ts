@@ -4,8 +4,96 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::order.order');
+export default factories.createCoreController('api::order.order', ()=> ({
+    async create(ctx){
+        console.log(ctx, "created");
+        const entity = await strapi.db.query('api::order.order').findMany({
+            populate: ['customer','items']
+        });
+        await strapi.plugins['email'].services.email.send({
+            to: '1000kaktusu@gmail.com',
+            from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
+            cc: '1000kaktusu@gmail.com',
+            bcc: '1000kaktusu@gmail.com',
+            replyTo: '1000kaktusu@gmail.com',
+            subject: 'order created',
+            text: 'order created',
+            html: 'order created',
+          })
+        return this.transformResponse(entity,ctx);
+    },
+    async post(ctx){
+        console.log(ctx, "posted");
+        const entity = await strapi.db.query('api::order.order').findMany({
+            populate: ['customer','items']
+        });
+        await strapi.plugins['email'].services.email.send({
+            to: '1000kaktusu@gmail.com',
+            from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
+            cc: '1000kaktusu@gmail.com',
+            bcc: '1000kaktusu@gmail.com',
+            replyTo: '1000kaktusu@gmail.com',
+            subject: 'order posted',
+            text: 'order posted',
+            html: 'order posted',
+          })
+        return this.transformResponse(entity,ctx);
+    },
+    async find(ctx){
+        const entity = await strapi.db.query('api::order.order').findMany({
+                populate: ['customer','items']
+            });
+            await strapi.plugins['email'].services.email.send({
+                to: '1000kaktusu@gmail.com',
+                from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
+                cc: '1000kaktusu@gmail.com',
+                bcc: '1000kaktusu@gmail.com',
+                replyTo: '1000kaktusu@gmail.com',
+                subject: 'orders found',
+                text: 'orders found',
+                html: 'orders found',
+              })
+        console.log(entity, "find");
+        return this.transformResponse(entity,ctx);
+    }
 
+    
+}));
+
+
+// await strapi.plugins['email'].services.email.send({
+//     to: 'valid email address',
+//     from: 'your verified email address', //e.g. single sender verification in SendGrid
+//     cc: 'valid email address',
+//     bcc: 'valid email address',
+//     replyTo: 'valid email address',
+//     subject: 'The Strapi Email plugin worked successfully',
+//     text: 'Hello world!',
+//     html: 'Hello world!',
+//   })
+
+
+// export default {
+//     async afterCreate(event) {    // Connected to "Save" button in admin panel
+//         const { result } = event;
+
+//         try{
+//             await strapi.plugins['email'].services.email.send({
+//               to: 'valid email address',
+//               from: 'your verified email address', // e.g. single sender verification in SendGrid
+//               cc: 'valid email address',
+//               bcc: 'valid email address',
+//               replyTo: 'valid email address',
+//               subject: 'The Strapi Email plugin worked successfully',
+//               text: '${fieldName}', // Replace with a valid field ID
+//               html: 'Hello world!', 
+                
+//             })
+//         } catch(err) {
+//             console.log(err);
+//         }
+//     }
+// }
 
 // import { factories } from '@strapi/strapi';
 // import Shopify from 'shopify-api-node';
