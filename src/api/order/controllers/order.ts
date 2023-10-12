@@ -8,16 +8,7 @@ export default factories.createCoreController('api::order.order', ({strapi})=> (
     async create(ctx){
         // const entity = await strapi.db.query('api::order.order').create({});
         // console.log(entity, "created");
-        await strapi.plugins['email'].services.email.send({
-            to: '1000kaktusu@gmail.com',
-            from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
-            // cc: '1000kaktusu@gmail.com',
-            // bcc: '1000kaktusu@gmail.com',
-            replyTo: 'hello@danielius.online',
-            subject: 'order created',
-            text: 'order created',
-            html: 'order created',
-          })
+      
         // return this.transformResponse(entity,ctx);
             // Creates the new order using a service
     const newOrder = await strapi.service('api::order.order').create(ctx);
@@ -26,6 +17,17 @@ export default factories.createCoreController('api::order.order', ({strapi})=> (
         console.log(ctx, "ctx");
         console.log(newOrder, "newOrder");
         console.log(sanitizedOrder, "sanitizedOrder");
+
+        await strapi.plugins['email'].services.email.send({
+            to: newOrder.customer.email,
+            from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
+            // cc: '1000kaktusu@gmail.com',
+            // bcc: '1000kaktusu@gmail.com',
+            replyTo: 'hello@danielius.online',
+            subject: 'order created',
+            text: 'order created',
+            html: 'order created',
+          })
 
     ctx.body = sanitizedOrder;
     },
