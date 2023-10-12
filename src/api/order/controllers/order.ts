@@ -6,30 +6,22 @@ import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::order.order', ({strapi})=> ({
     async create(ctx){
-        // const entity = await strapi.db.query('api::order.order').create({});
-        // console.log(entity, "created");
-      
-        // return this.transformResponse(entity,ctx);
-            // Creates the new order using a service
-    const newOrder = await strapi.service('api::order.order').create(ctx);
-
-    const sanitizedOrder = await this.sanitizeOutput(newOrder, ctx);
-        console.log(ctx, "ctx");
-        console.log(newOrder, "newOrder");
-        console.log(sanitizedOrder, "sanitizedOrder");
-
+        // const entity = await strapi.db.query('api::order.order').create(ctx);
         await strapi.plugins['email'].services.email.send({
-            to: newOrder.customer.email,
+            to: ctx.request.body.data.customer.email,
             from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
             // cc: '1000kaktusu@gmail.com',
             // bcc: '1000kaktusu@gmail.com',
             replyTo: 'hello@danielius.online',
             subject: 'order created',
-            text: 'order created',
+            text: `Hi, ${ctx.request.body.data.customer.firstName}, your order created`,
             html: 'order created',
-          })
-
-    ctx.body = sanitizedOrder;
+        })
+        console.log(ctx.request.body, "ctx.request.body");
+        console.log(ctx.response, "ctx.response");
+        
+        // console.log(strapi,entity, "created");
+       return ctx
     },
     async post(ctx){
         console.log(ctx, "posted");
