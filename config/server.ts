@@ -1,4 +1,5 @@
 export default ({ env }) => ({
+  url: env("URL", "http://api.localshop.lt"),
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1339),
   app: {
