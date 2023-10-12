@@ -6,16 +6,16 @@ import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::order.order', ()=> ({
     async create(ctx){
-        console.log(ctx, "created");
         const entity = await strapi.db.query('api::order.order').findMany({
             populate: ['customer','items']
         });
+        console.log(entity, "created");
         await strapi.plugins['email'].services.email.send({
             to: '1000kaktusu@gmail.com',
             from: '1000kaktusu@gmail.com', //e.g. single sender verification in SendGrid
-            cc: '1000kaktusu@gmail.com',
-            bcc: '1000kaktusu@gmail.com',
-            replyTo: '1000kaktusu@gmail.com',
+            // cc: '1000kaktusu@gmail.com',
+            // bcc: '1000kaktusu@gmail.com',
+            replyTo: 'hello@danielius.online',
             subject: 'order created',
             text: 'order created',
             html: 'order created',
