@@ -20,7 +20,7 @@ export default factories.createCoreController('api::order.order', ({ strapi }) =
 
             await strapi.plugins['email'].services.email.send({
                 to: entity.customer.email,
-                from: '1000kaktusu@gmail.com',
+                from: 'info@localshop.lt',
                 replyTo: 'info@localshop.lt',
                 subject: `Order received #${entity.id}`,
                 html: orderReceivedTemplate.data,
