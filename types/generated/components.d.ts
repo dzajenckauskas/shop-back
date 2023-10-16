@@ -34,6 +34,7 @@ export interface ItemsItems extends Schema.Component {
   collectionName: 'components_items_items';
   info: {
     displayName: 'items';
+    description: '';
   };
   attributes: {
     quantity: Attribute.Integer;
@@ -48,10 +49,11 @@ export interface ProductProduct extends Schema.Component {
   collectionName: 'components_product_products';
   info: {
     displayName: 'Product';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
-    slug: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Required;
   };
 }
 

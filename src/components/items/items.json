@@ -1,7 +1,8 @@
 {
   "collectionName": "components_items_items",
   "info": {
-    "displayName": "items"
+    "displayName": "items",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -20,7 +21,8 @@
     "product": {
       "type": "component",
       "repeatable": false,
-      "component": "product.product"
+      "component": "product.product",
+      "required": false
     }
   }
 }

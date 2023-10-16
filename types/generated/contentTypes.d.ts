@@ -406,8 +406,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   };
   attributes: {
     orderTotal: Attribute.Float;
-    customer: Attribute.Component<'customer.customer'>;
-    items: Attribute.Component<'items.items', true>;
+    customer: Attribute.Component<'customer.customer'> & Attribute.Required;
+    items: Attribute.Component<'items.items', true> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

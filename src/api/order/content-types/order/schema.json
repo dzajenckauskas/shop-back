@@ -16,12 +16,14 @@
       "type": "float"
     },
     "customer": {
+      "required": true,
       "displayName": "customer",
       "type": "component",
       "repeatable": false,
       "component": "customer.customer"
     },
     "items": {
+      "required": true,
       "type": "component",
       "repeatable": true,
       "component": "items.items"
