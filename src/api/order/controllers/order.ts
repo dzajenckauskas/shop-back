@@ -14,7 +14,7 @@ export default factories.createCoreController('api::order.order', ({ strapi }) =
                 where: { id: data.id },
                 populate: ['customer', 'items']
             });
-            const orderTemplate = await axios.get(
+            const orderReceivedTemplate = await axios.get(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/mails/order-received/email?id=${data.id}`
             )
 
@@ -23,7 +23,7 @@ export default factories.createCoreController('api::order.order', ({ strapi }) =
                 from: '1000kaktusu@gmail.com',
                 replyTo: 'info@localshop.lt',
                 subject: `Order received #${entity.id}`,
-                html: orderTemplate.data,
+                html: orderReceivedTemplate.data,
             })
 
         } catch (error) {
