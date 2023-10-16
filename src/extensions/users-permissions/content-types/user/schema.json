@@ -91,6 +91,10 @@
     },
     "phone": {
       "type": "string"
+    },
+    "acceptTerms": {
+      "type": "boolean",
+      "required": true
     }
   }
 }

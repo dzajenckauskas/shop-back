@@ -827,6 +827,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     postcode: Attribute.String;
     address2: Attribute.String;
     phone: Attribute.String;
+    acceptTerms: Attribute.Boolean & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
